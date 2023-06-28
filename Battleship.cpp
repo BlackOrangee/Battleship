@@ -16,7 +16,7 @@ int player_score = 0;
 int pc_score = 0;
 
 bool end_game = false;
-
+#include "windows.h"
 #include "Field.h"
 #include "Dialog.h"
 #include "Game.h"
@@ -40,7 +40,7 @@ int main()
 	
 
 	Ship* PC_Ships = Random_Ship_Placer(field_Enemy, size, ship_count);//pc ships
-	//int menu = Start_Menu();
+	int menu = Start_Menu();
 
 	Ship* Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);;
 
@@ -57,9 +57,19 @@ int main()
 	//Players_Turn(field_1_Player, field_2_Enemy, field_Enemy, field_Enemy_Memory, size, PC_Ships, ship_count);
 
 	//Field_Print(field_1_Player, field_2_Enemy, size);
+
 start:
-	Field_Print(field_Enemy, field_Enemy_Memory, size);
+
+
+
+	//Field_Print(field_Enemy, field_Enemy_Memory, size);
 	Field_Print(field_1_Player, field_2_Enemy, size);
+
+	if (end_game)
+	{
+		Win_Logo();
+	}
+
 	int input_size = 2;
 	int* input = Input(input_size);
 
@@ -75,18 +85,44 @@ start:
 		}
 		else
 		{
-			Win_Logo();
+			end_game = true;
 		}
 	}
-	//////////////
-	//goto start;///
-	//////////////
+	if (end_game)
+	{
+		goto start;
+	}
+	///////////////
+	//goto start;//
+	///////////////
+	Field_Print(field_1_Player, field_2_Enemy, size);
 
-
+	bool hit = false;
 
 startpc:
 
-	if (PC_Fire(field_1_Player, field_Enemy_Memory, size))
+
+	int pc_input_size = 2;
+	int* pc_input = new int[input_size];
+	pc_input = PC_II_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count);
+
+
+	if (pc_input[0] == 0 && pc_input[1] == 0)
+	{
+		int ran = rand() % 10 + 1;
+		pc_input[0] = ran;
+		ran = rand() % 10 + 1;
+		pc_input[1] = ran;
+	}
+	
+	int fire = PC_Fire(field_1_Player, field_Enemy_Memory, size, pc_input, pc_input_size);
+
+	if (fire != 2)
+	{
+		Sleep(1000);
+		Field_Print(field_1_Player, field_2_Enemy, size);
+	}
+	if (fire == 1)
 	{
 		pc_score++;
 		Check_Ship(field_1_Player, size, Players_Ships, ship_count);
@@ -94,17 +130,20 @@ startpc:
 
 		if (Score_check(player_score))
 		{
+			hit = true;
 			goto startpc;
 		}
 		else
 		{
-			Win_Logo();
+			end_game = true;
 		}
 	}
-	if (!end_game)
+	else if (fire == 2)
 	{
-		goto start;
+		goto startpc;
 	}
+
+	goto start;
 
 
 }

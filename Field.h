@@ -21,7 +21,7 @@ char** Create_Field(int& size)
 
 void Standart_Field(char** field_1, char** field_2, int& size)
 {
-	//system("cls");	
+		
 	cout << "\n\n\n";
 
 	printf("\t  /|==| Your Field  |==|\\       /|==| Enemy Field |==|\\\n");
@@ -44,7 +44,6 @@ void Standart_Field(char** field_1, char** field_2, int& size)
 
 void Alternative_1_Field_Print(char** field_1, char** field_2, int& size)
 {
-	//system("cls");	
 	cout << "\n\n\n";
 
 	printf("\t  /|==| Your Field  |==|\\       /|==| Enemy Field |==|\\\n");
@@ -68,7 +67,6 @@ void Alternative_1_Field_Print(char** field_1, char** field_2, int& size)
 
 void Alternative_2_Field_Print(char** field_1, char** field_2, int& size)
 {
-	//system("cls");	
 	cout << "\n\n\n";
 
 	printf("\t  /|==| Your Field  |==|\\       /|==| Enemy Field |==|\\\n");
@@ -92,7 +90,6 @@ void Alternative_2_Field_Print(char** field_1, char** field_2, int& size)
 
 void Alternative_3_Field_Print(char** field_1, char** field_2, int& size)
 {
-	//system("cls");	
 	cout << "\n\n\n";
 
 	printf("\t  /|==| Your Field  |==|\\       /|==| Enemy Field |==|\\\n");
@@ -118,6 +115,7 @@ void Alternative_3_Field_Print(char** field_1, char** field_2, int& size)
 
 void Field_Print(char** field_1, char** field_2, int& size)
 {
+	system("cls");	
 	switch (f_style)
 	{
 	case 0:

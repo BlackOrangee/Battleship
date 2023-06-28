@@ -19,27 +19,356 @@ int Player_Fire(int* input, int& input_size, char** field_2_Enemy, char** field_
 	}
 
 }
-
-void PC_Fire_Check()
+int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_count)
 {
 
+	int* arr = new int[size];
+	arr[0] = 0;
+	arr[1] = 0;
+
+	int ran;
+
+	for (int k = 0; k < ships_count; k++)
+	{
+		if (ships[k].on_watter == false)
+		{
+			continue;
+		}
+		switch (ships[k].orient)
+		{
+		case 1:
+			for (int i = 0; i < ships[k].ship_size; i++)
+			{
+				if (field_visible[ships[k].number + i][ships[k].letter] == cross && (field_visible[ships[k].number + i - 1][ships[k].letter] == cross || field_visible[ships[k].number + i + 1][ships[k].letter] == cross))
+				{
+					ran = rand() % 100;
+					if (ran >= 50)
+					{
+						if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+						{
+							arr[0] = ships[k].number + i + 1;
+							arr[1] = ships[k].letter;
+						}
+						else if (field_visible[ships[k].number + i - 1][ships[k].letter] == space && ships[k].number + i - 1 != 0)//
+						{
+							arr[0] = ships[k].number + i - 1;
+							arr[1] = ships[k].letter;
+						}
+						else
+						{
+							continue;
+						}
+						return arr;
+					}
+					else
+					{
+						if (field_visible[ships[k].number + i - 1][ships[k].letter] == space && ships[k].number + i - 1 != 0)//
+						{
+							arr[0] = ships[k].number + i - 1;
+							arr[1] = ships[k].letter;
+						}
+						else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+						{
+							arr[0] = ships[k].number + i + 1;
+							arr[1] = ships[k].letter;
+						}
+						else
+						{
+							continue;
+						}
+						return arr;
+					}
+				}
+				else if (field_visible[ships[k].number + i][ships[k].letter] == cross)
+				{
+					ran = rand() % 100;
+					if (ran >= 50)
+					{
+						ran = rand() % 100;
+						if (ran >= 50)
+						{
+							if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							{
+								arr[0] = ships[k].number + i + 1;
+								arr[1] = ships[k].letter;
+							}
+							else if (field_visible[ships[k].number + i - 1][ships[k].letter] == space && ships[k].number + i - 1 != 0)
+							{
+								arr[0] = ships[k].number + i - 1;
+								arr[1] = ships[k].letter;
+							}
+							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							{
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter + 1;
+							}
+							else if (field_visible[ships[k].number + i][ships[k].letter - 1] == space && ships[k].letter - 1 != 0)
+							{
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter - 1;
+							}
+							else
+							{
+								continue;
+							}
+							return arr;
+						}
+						else
+						{
+							if (field_visible[ships[k].number + i - 1][ships[k].letter] == space && ships[k].number + i - 1 != 0)
+							{
+								arr[0] = ships[k].number + i - 1;
+								arr[1] = ships[k].letter;
+							}
+							else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							{
+								arr[0] = ships[k].number + i + 1;
+								arr[1] = ships[k].letter;
+							}
+							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							{
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter + 1;
+							}
+							else if (field_visible[ships[k].number + i][ships[k].letter - 1] == space && ships[k].letter - 1 != 0)
+							{
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter - 1;
+							}
+							else
+							{
+								continue;
+							}
+							return arr;
+						}
+						
+						
+					}
+					else
+					{
+						ran = rand() % 100;
+						if (ran >= 50)
+						{
+							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							{
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter + 1;
+							}
+							else if (field_visible[ships[k].number + i][ships[k].letter - 1] == space && ships[k].letter - 1 != 0)
+							{
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter - 1;
+							}
+							else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							{
+								arr[0] = ships[k].number + i + 1;
+								arr[1] = ships[k].letter;
+							}
+							else if (field_visible[ships[k].number + i - 1][ships[k].letter] == space && ships[k].number + i - 1 != 0)
+							{
+								arr[0] = ships[k].number + i - 1;
+								arr[1] = ships[k].letter;
+							}
+							else
+							{
+								continue;
+							}
+							return arr;
+						}
+						else
+						{
+							 if (field_visible[ships[k].number + i][ships[k].letter - 1] == space && ships[k].letter - 1 != 0)
+							 {
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter - 1;
+							 }
+							else if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							 {
+								arr[0] = ships[k].number + i;
+								arr[1] = ships[k].letter + 1;
+							 }
+							 else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							 {
+								arr[0] = ships[k].number + i + 1;
+								arr[1] = ships[k].letter;
+							 }
+							else if (field_visible[ships[k].number + i - 1][ships[k].letter] == space && ships[k].number + i - 1 != 0)
+							{
+								arr[0] = ships[k].number + i - 1;
+								arr[1] = ships[k].letter;
+							}
+							else
+							{
+								continue;
+							}
+							return arr;
+						}
+						
+					}
+				}
+			}
+			break;
+		case 2:
+			for (int i = 0; i < ships[k].ship_size; i++)
+			{
+				if (field_visible[ships[k].number][ships[k].letter + i] == cross && (field_visible[ships[k].number][ships[k].letter + i - 1] == cross || field_visible[ships[k].number][ships[k].letter + i + 1] == cross))
+				{
+					ran = rand() % 100;
+					if (ran >= 50)
+					{
+						if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + 1 != 12)
+						{
+							arr[0] = ships[k].number;
+							arr[1] = ships[k].letter + i + 1;
+						}
+						else if (field_visible[ships[k].number][ships[k].letter + i - 1] == space && ships[k].letter - 1 != 0)
+						{
+							arr[0] = ships[k].number;
+							arr[1] = ships[k].letter + i - 1;
+						}
+						else
+						{
+							continue;
+						}
+						return arr;
+					}
+					else
+					{
+						if (field_visible[ships[k].number][ships[k].letter + i - 1] == space && ships[k].letter - 1 != 0)
+						{
+							arr[0] = ships[k].number;
+							arr[1] = ships[k].letter + i - 1;
+						}
+						else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + 1 != 12)
+						{
+							 arr[0] = ships[k].number;
+							 arr[1] = ships[k].letter + i + 1;
+						}
+						else
+						{
+							continue;
+						}
+						return arr;
+					}
+				}
+				else if (field_visible[ships[k].number][ships[k].letter + i] == cross)
+				{
+					ran = rand() % 100;
+					if (ran >= 50)
+					{
+						ran = rand() % 100;
+						if (ran >= 50)
+						{
+							if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							{
+								arr[0] = ships[k].number + 1;
+								arr[1] = ships[k].letter + i;
+							}
+							else if (field_visible[ships[k].number - 1][ships[k].letter + i] == space && ships[k].number - 1 != 0)
+							{
+								arr[0] = ships[k].number - 1;
+								arr[1] = ships[k].letter + i;
+							}
+							else if (field_visible[ships[k].number][ships[k].letter + i - 1] == space && ships[k].letter - 1 != 0)
+							{
+								arr[0] = ships[k].number;
+								arr[1] = ships[k].letter + i - 1;
+							}
+							else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + 1 != 12)
+							{
+								arr[0] = ships[k].number;
+								arr[1] = ships[k].letter + i + 1;
+							}
+							else
+							{
+								continue;
+							}
+							return arr;
+						}
+						
+					}
+					else
+					{
+						ran = rand() % 100;
+						if (ran >= 50)
+						{
+							if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + 1 != 12)
+							{
+								arr[0] = ships[k].number;
+								arr[1] = ships[k].letter + i + 1;
+							}
+							else if (field_visible[ships[k].number][ships[k].letter + i - 1] == space && ships[k].letter - 1 != 0)
+							{
+								arr[0] = ships[k].number;
+								arr[1] = ships[k].letter + i - 1;
+							}
+							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							{
+								arr[0] = ships[k].number + 1;
+								arr[1] = ships[k].letter + i;
+							}
+							else if (field_visible[ships[k].number - 1][ships[k].letter + i] == space && ships[k].number - 1 != 0)
+							{
+								arr[0] = ships[k].number - 1;
+								arr[1] = ships[k].letter + i;
+							}
+							else
+							{
+								continue;
+							}
+							return arr;
+						}
+						else
+						{
+							if (field_visible[ships[k].number - 1][ships[k].letter + i] == space && ships[k].number - 1 != 0)
+							{
+								arr[0] = ships[k].number - 1;
+								arr[1] = ships[k].letter + i;
+							}
+							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							{
+								arr[0] = ships[k].number + 1;
+								arr[1] = ships[k].letter + i;
+							}
+							else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + 1 != 12)
+							{
+								arr[0] = ships[k].number;
+								arr[1] = ships[k].letter + i + 1;
+							}
+							else if (field_visible[ships[k].number][ships[k].letter + i - 1] == space && ships[k].letter - 1 != 0)
+							{
+								arr[0] = ships[k].number;
+								arr[1] = ships[k].letter + i - 1;
+							}
+							else 
+							{
+								continue;
+							}
+							return arr;
+						}
+					}
+				}
+			}
+			break;
+		default:
+			break;
+		}
+		
+	}
+	return arr;
 }
 
-int PC_Fire(char** field_1_Player, char** field_Enemy_Memory, int& size)
+int PC_Fire(char** field_1_Player, char** field_Enemy_Memory, int& size, int* input, int input_size)
 {
-
-	const int input_size = 2;
-	int* input = new int[input_size];
-	int ran = rand() % 10 + 1;
-	input[0] = ran;
-	ran = rand() % 10 + 1;
-	input[1] = ran;
-
-	if (field_1_Player[input[0]][input[1]] == space || field_1_Player[input[0]][input[1]] == point)
+	if (field_1_Player[input[0]][input[1]] == space)
 	{
 		field_1_Player[input[0]][input[1]] = point;
 		field_Enemy_Memory[input[0]][input[1]] = point;
 		return 0;
+	}
+	else if (field_1_Player[input[0]][input[1]] == point || field_1_Player[input[0]][input[1]] == cross)
+	{
+		return 2;
 	}
 	else if (field_1_Player[input[0]][input[1]] == ship)
 	{
@@ -165,6 +494,12 @@ void Pointer(char** field_1_visible, char** field_2_unvisible, int& size, Ship* 
 	}
 	
 }
+
+
+
+
+
+
 
 int Score_check(int& score)
 {
