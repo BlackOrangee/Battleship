@@ -496,11 +496,6 @@ void Pointer(char** field_1_visible, char** field_2_unvisible, int& size, Ship* 
 }
 
 
-
-
-
-
-
 int Score_check(int& score)
 {
 	if (score == 20)// Player won
@@ -508,53 +503,3 @@ int Score_check(int& score)
 		return 0;
 	}
 }
-//
-//void Players_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy, char** field_Enemy_Memory, int& size, Ship* PC_Ships, int& ship_count)
-//{
-//start:
-//	Field_Print(field_1_Player, field_2_Enemy, size);
-//	int input_size = 2;
-//	int* input = Input(input_size);
-//
-//	if (Player_Fire(input, input_size, field_2_Enemy, field_Enemy, size))
-//	{
-//		player_score++;
-//		Check_Ship(field_Enemy, size, PC_Ships, ship_count);
-//		Pointer(field_2_Enemy, field_Enemy, size, PC_Ships, ship_count);
-//
-//		if (Score_check(player_score))
-//		{
-//			goto start;
-//		}
-//		else
-//		{
-//			Win_Logo();
-//		}
-//	}
-//	//////////////
-//	//goto start;///
-//	//////////////
-//}
-//
-//
-//void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy, char** field_Enemy_Memory, int& size, Ship* Players_Ships, int& ship_count)
-//{
-//startpc:
-//
-//	if (PC_Fire(field_1_Player, field_Enemy_Memory, size))
-//	{
-//		pc_score++;
-//		Check_Ship(field_1_Player, size, Players_Ships, ship_count);
-//		Pointer(field_Enemy_Memory, field_1_Player, size, Players_Ships, ship_count);
-//
-//		if (Score_check(player_score))
-//		{
-//			goto startpc;
-//		}
-//		else
-//		{
-//			Win_Logo();
-//		}
-//	}
-//	
-//}
