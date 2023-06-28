@@ -401,26 +401,8 @@ void Style_Menu()
 		break;
 	}
 }
-Ship* Play_Menu(char** field_1_Player, char** field_2_Enemy, int& size, int& ship_count)
-{
-	int menu = 0;
-	cout << "\n\n\t1 -- Auto place ships\n\t2 -- Manual place ships\n\t";	cin >> menu;
 
-	switch (menu)
-	{
-	case 1:
-		Ship * Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);
-		return Players_Ships;
-		break;
-	case 2:
-		Ship * Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count);
-		return Players_Ships;
-		break;
-	default:
-		break;
-	}
-}
-Ship* Start_Menu(char** field_1_Player, char** field_2_Enemy, int& size, int& ship_count)
+int Start_Menu()
 {
 start_menu:
 
@@ -430,8 +412,20 @@ start_menu:
 	switch (menu)
 	{
 	case 1:
-		 Ship* Players_Ships = Play_Menu(field_1_Player, field_2_Enemy, size, ship_count);
-		 return Players_Ships;
+		return 0;
+		/*cout << "\n\n\t1 -- Auto place ships\n\t2 -- Manual place ships\n\t";	cin >> menu;
+
+		switch (menu)
+		{
+		case 1:
+			return 1;
+			break;
+		case 2:
+			return 2;
+			break;
+		default:
+			break;
+		}*/
 		break;
 	case 2:
 		Style_Menu();

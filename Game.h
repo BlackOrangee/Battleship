@@ -2,9 +2,6 @@
 
 using namespace std;
 
-
-
-
 int Player_Fire(int* input, int& input_size, char** field_2_Enemy, char** field_Enemy, int& size)
 {
 	if (field_Enemy[input[0]][input[1]] == ship)
@@ -20,14 +17,17 @@ int Player_Fire(int* input, int& input_size, char** field_2_Enemy, char** field_
 		field_2_Enemy[input[0]][input[1]] = point;
 		return 0;
 	}
-	
+
+}
+
+void PC_Fire_Check()
+{
+
 }
 
 int PC_Fire(char** field_1_Player, char** field_Enemy_Memory, int& size)
 {
-again:
 
-	
 	const int input_size = 2;
 	int* input = new int[input_size];
 	int ran = rand() % 10 + 1;
@@ -45,19 +45,11 @@ again:
 	{
 		field_1_Player[input[0]][input[1]] = cross;
 		field_Enemy_Memory[input[0]][input[1]] = cross;
-		goto again;
+		return 1;
 	}
+	
 }
 
-
-/// <summary>
-/// //
-/// </summary>
-/// <param name="field"></param>
-/// <param name="size"></param>
-/// <param name="input"></param>
-/// <param name="input_size"></param>
-/// <returns></returns>
 void Check_Ship(char** field_2_unvisible, int& size, Ship* ships, int& ships_count)
 {
 	
@@ -127,30 +119,6 @@ void Check_Ship(char** field_2_unvisible, int& size, Ship* ships, int& ships_cou
 			}
 		}
 	}
-	
-	
-
-
-
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	for (int j = 0; j < 3; j++)
-	//	{
-	//		if (field[input[0] + i - 1][input[1] + j - 1] == ship)
-	//		{
-	//			return 0;
-	//		}
-	//		else
-	//		{
-	//			check = true;
-	//		}
-	//	}
-	//}
-	//if (check)
-	//{
-	//	return 1;
-	//}
-
 }
 
 void Pointer(char** field_1_visible, char** field_2_unvisible, int& size, Ship* ships, int& ships_count)
@@ -196,28 +164,8 @@ void Pointer(char** field_1_visible, char** field_2_unvisible, int& size, Ship* 
 		}
 	}
 	
-	/*for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			if (field_1_visible[input[0] + i - 1][input[1] + j - 1] != ship)
-			{
-				field_1_visible[input[0] + i - 1][input[1] + j - 1] = point;
-				field_2_unvisible[input[0] + i - 1][input[1] + j - 1] = point;
-			}
-			else if (field_1_visible[input[0] + i - 1][input[1] + j - 1] == ship || field_1_visible[input[0] + i - 1][input[1] + j - 1] == cross)
-			{
-				field_1_visible[input[0] + i - 1][input[1] + j - 1] = cross;
-				field_2_unvisible[input[0] + i - 1][input[1] + j - 1] = cross;
-			}
-		}
-	}*/
 }
-/// <summary>
-/// //
-/// </summary>
-/// <param name="score"></param>
-/// <returns></returns>
+
 int Score_check(int& score)
 {
 	if (score == 20)// Player won
@@ -225,10 +173,53 @@ int Score_check(int& score)
 		return 0;
 	}
 }
-void Players_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy, char** field_Enemy_Memory, int& size)
-{
-	
-
-	
-	
-}
+//
+//void Players_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy, char** field_Enemy_Memory, int& size, Ship* PC_Ships, int& ship_count)
+//{
+//start:
+//	Field_Print(field_1_Player, field_2_Enemy, size);
+//	int input_size = 2;
+//	int* input = Input(input_size);
+//
+//	if (Player_Fire(input, input_size, field_2_Enemy, field_Enemy, size))
+//	{
+//		player_score++;
+//		Check_Ship(field_Enemy, size, PC_Ships, ship_count);
+//		Pointer(field_2_Enemy, field_Enemy, size, PC_Ships, ship_count);
+//
+//		if (Score_check(player_score))
+//		{
+//			goto start;
+//		}
+//		else
+//		{
+//			Win_Logo();
+//		}
+//	}
+//	//////////////
+//	//goto start;///
+//	//////////////
+//}
+//
+//
+//void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy, char** field_Enemy_Memory, int& size, Ship* Players_Ships, int& ship_count)
+//{
+//startpc:
+//
+//	if (PC_Fire(field_1_Player, field_Enemy_Memory, size))
+//	{
+//		pc_score++;
+//		Check_Ship(field_1_Player, size, Players_Ships, ship_count);
+//		Pointer(field_Enemy_Memory, field_1_Player, size, Players_Ships, ship_count);
+//
+//		if (Score_check(player_score))
+//		{
+//			goto startpc;
+//		}
+//		else
+//		{
+//			Win_Logo();
+//		}
+//	}
+//	
+//}
