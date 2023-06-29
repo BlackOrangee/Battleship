@@ -17,6 +17,10 @@ int player_score = 0;
 int pc_score = 0;
 
 bool end_game = false;
+
+int difficulty = 70;
+
+
 #include "windows.h"
 #include "Field.h"
 #include "Dialog.h"
