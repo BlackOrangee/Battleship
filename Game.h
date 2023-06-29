@@ -10,15 +10,14 @@ int Player_Fire(int* input, int& input_size, char** field_2_Enemy, char** field_
 		field_2_Enemy[input[0]][input[1]] = cross;
 		return 1;
 	}
-
 	if (field_Enemy[input[0]][input[1]] == space || field_Enemy[input[0]][input[1]] == point)
 	{
 		field_Enemy[input[0]][input[1]] = point;
 		field_2_Enemy[input[0]][input[1]] = point;
 		return 0;
 	}
-
 }
+
 int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_count)
 {
 
@@ -141,8 +140,6 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							}
 							return arr;
 						}
-						
-						
 					}
 					else
 					{
@@ -203,7 +200,6 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							}
 							return arr;
 						}
-						
 					}
 				}
 			}
@@ -285,7 +281,6 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							}
 							return arr;
 						}
-						
 					}
 					else
 					{
@@ -353,7 +348,6 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 		default:
 			break;
 		}
-		
 	}
 	return arr;
 }
@@ -376,13 +370,10 @@ int PC_Fire(char** field_1_Player, char** field_Enemy_Memory, int& size, int* in
 		field_Enemy_Memory[input[0]][input[1]] = cross;
 		return 1;
 	}
-	
 }
 
 void Check_Ship(char** field_2_unvisible, int& size, Ship* ships, int& ships_count)
 {
-	
-
 	for (int k = 0; k < ships_count; k++)
 	{
 		/*if (!ships[k].on_watter)
@@ -395,7 +386,6 @@ void Check_Ship(char** field_2_unvisible, int& size, Ship* ships, int& ships_cou
 		{
 			on_watter[i] = true;
 		}
-
 		switch (ships[k].orient)
 		{
 		case 1:
@@ -452,8 +442,6 @@ void Check_Ship(char** field_2_unvisible, int& size, Ship* ships, int& ships_cou
 
 void Pointer(char** field_1_visible, char** field_2_unvisible, int& size, Ship* ships, int& ships_count)
 {
-	
-
 	for (int k = 0; k < ships_count; k++)
 	{
 		if (ships[k].on_watter)
@@ -492,9 +480,7 @@ void Pointer(char** field_1_visible, char** field_2_unvisible, int& size, Ship* 
 			break;
 		}
 	}
-	
 }
-
 
 int Score_check(int& score)
 {

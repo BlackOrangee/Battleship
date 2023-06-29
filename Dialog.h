@@ -2,8 +2,6 @@
 #include <string>
 using namespace std;
 
-
-
 struct Ship
 {
 	bool on_watter = false;
@@ -34,47 +32,6 @@ int Check_Input(char input)
 		letter = input - 97;
 		return letter;
 	}
-	/*if (input == 'a' || input == 'A')
-	{
-		letter = 1;
-		
-	}
-	else if (input == 'b' || input == 'B')
-	{
-		letter = 2;
-	}
-	else if (input == 'c' || input == 'C')
-	{
-		letter = 3;
-	}
-	else if (input == 'd' || input == 'D')
-	{
-		letter = 4;
-	}
-	else if (input == 'e' || input == 'E')
-	{
-		letter = 5;
-	}
-	else if (input == 'f' || input == 'F')
-	{
-		letter = 6;
-	}
-	else if (input == 'g' || input == 'G')
-	{
-		letter = 7;
-	}
-	else if (input == 'h' || input == 'H')
-	{
-		letter = 8;
-	}
-	else if (input == 'i' || input == 'I')
-	{
-		letter = 9;
-	}
-	else if (input == 'j' || input == 'J')
-	{
-		letter = 10;
-	}*/
 	return letter;
 }
 
@@ -106,8 +63,6 @@ input_start:
 	return arr;
 }
 
-
-
 int Place_check(int ship_size, int orient, char** field, int& size, int* input, int input_size)
 {
 	switch (orient)
@@ -126,9 +81,7 @@ int Place_check(int ship_size, int orient, char** field, int& size, int* input, 
 					return 1;
 				}
 			}
-			
 		}
-		
 		break;
 	case 2:
 		if (input[1] + ship_size > 11)
@@ -144,7 +97,6 @@ int Place_check(int ship_size, int orient, char** field, int& size, int* input, 
 					return 1;
 				}
 			}
-
 		}
 		break;
 	default:
@@ -152,8 +104,6 @@ int Place_check(int ship_size, int orient, char** field, int& size, int* input, 
 	}
 	return 0;
 }
-
-
 
 Ship* Ship_Placer(char** field_1_Player, char** field_2_Enemy, int& size, int& ship_count)
 {
@@ -184,8 +134,7 @@ enter_coordinates:
 	int* input = Input(input_size);
 
 	int orient = 0;
-	cout << "\n\n\tEnter orientation\n";	cin >> orient;
-	
+	cout << "\n\n\tEnter orientation\n\t";	cin >> orient;
 
 	if (Place_check(ship_size, orient, field_1_Player, size, input, input_size))
 	{
@@ -197,7 +146,6 @@ enter_coordinates:
 		ship_count++;
 		Players_Ships[ship_count].save(true, input[0], input[1], orient, ship_size);
 	}
-
 	switch (orient)
 	{
 	case 1: //vertical
@@ -217,7 +165,6 @@ enter_coordinates:
 	default:
 		break;
 	}
-
 	if (ship_4)
 	{
 		ship_4--;
@@ -434,6 +381,5 @@ start_menu:
 	default:
 		break;
 	}
-
 }
 

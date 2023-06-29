@@ -1,5 +1,6 @@
 ﻿// Battleship.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
+
 #include <iostream>
 using namespace std;
 
@@ -34,33 +35,16 @@ int main()
 	char** field_Enemy = Create_Field(size);
 	char** field_Enemy_Memory = Create_Field(size);
 
-	
-
 	int ship_count = 10;
-	
 
 	Ship* PC_Ships = Random_Ship_Placer(field_Enemy, size, ship_count);//pc ships
 	int menu = Start_Menu();
 
 	Ship* Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);;
-
 	//Ship* Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count);
 
-	
-
-	
-
-	// player fire
-
-
-
-	//Players_Turn(field_1_Player, field_2_Enemy, field_Enemy, field_Enemy_Memory, size, PC_Ships, ship_count);
-
-	//Field_Print(field_1_Player, field_2_Enemy, size);
 
 start:
-
-
 
 	//Field_Print(field_Enemy, field_Enemy_Memory, size);
 	Field_Print(field_1_Player, field_2_Enemy, size);
@@ -92,20 +76,15 @@ start:
 	{
 		goto start;
 	}
-	///////////////
-	//goto start;//
-	///////////////
 	Field_Print(field_1_Player, field_2_Enemy, size);
 
 	bool hit = false;
 
 startpc:
 
-
 	int pc_input_size = 2;
 	int* pc_input = new int[input_size];
 	pc_input = PC_II_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count);
-
 
 	if (pc_input[0] == 0 && pc_input[1] == 0)
 	{
@@ -114,7 +93,6 @@ startpc:
 		ran = rand() % 10 + 1;
 		pc_input[1] = ran;
 	}
-	
 	int fire = PC_Fire(field_1_Player, field_Enemy_Memory, size, pc_input, pc_input_size);
 
 	if (fire != 2)
@@ -128,7 +106,7 @@ startpc:
 		Check_Ship(field_1_Player, size, Players_Ships, ship_count);
 		Pointer(field_Enemy_Memory, field_1_Player, size, Players_Ships, ship_count);
 
-		if (Score_check(player_score))
+		if (Score_check(pc_score))
 		{
 			hit = true;
 			goto startpc;
@@ -142,8 +120,5 @@ startpc:
 	{
 		goto startpc;
 	}
-
 	goto start;
-
-
 }
