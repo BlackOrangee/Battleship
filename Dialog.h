@@ -134,7 +134,7 @@ enter_coordinates:
 	int* input = Input(input_size);
 
 	int orient = 0;
-	cout << "\n\n\tEnter orientation\n\t";	cin >> orient;
+	cout << "\n\n\tEnter orientation:\n\t1 -- Vertical\n\t2 -- Horizontal\n\t";	cin >> orient;
 
 	if (Place_check(ship_size, orient, field_1_Player, size, input, input_size))
 	{
