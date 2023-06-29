@@ -52,7 +52,7 @@ start:
 
 	//Field_Print(field_Enemy, field_Enemy_Memory, size);
 	Field_Print(field_1_Player, field_2_Enemy, size);
-
+	Statistic(Players_Ships, PC_Ships, ship_count);
 	if (end_game)
 	{
 		Win_Logo();
@@ -81,6 +81,7 @@ start:
 		goto start;
 	}
 	Field_Print(field_1_Player, field_2_Enemy, size);
+	Statistic(Players_Ships, PC_Ships, ship_count);
 
 	bool hit = false;
 
@@ -103,6 +104,7 @@ startpc:
 	{
 		Sleep(1000);
 		Field_Print(field_1_Player, field_2_Enemy, size);
+		Statistic(Players_Ships, PC_Ships, ship_count);
 	}
 	if (fire == 1)
 	{

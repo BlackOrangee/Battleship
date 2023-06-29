@@ -383,3 +383,63 @@ start_menu:
 	}
 }
 
+void Statistic(Ship* player, Ship* pc, int& ship_count)
+{
+	int p_ship_4 = 0;
+	int p_ship_3 = 0;
+	int p_ship_2 = 0;
+	int p_ship_1 = 0;
+
+	int pc_ship_4 = 0;
+	int pc_ship_3 = 0;
+	int pc_ship_2 = 0;
+	int pc_ship_1 = 0;
+
+	for (int i = 0; i < ship_count; i++)
+	{
+		if (player[i].on_watter)
+		{
+			if (player[i].ship_size == 4)
+			{
+				p_ship_4++;
+			}
+			else if (player[i].ship_size == 3)
+			{
+				p_ship_3++;
+			}
+			else if (player[i].ship_size == 2)
+			{
+				p_ship_2++;
+			}
+			else if (player[i].ship_size == 1)
+			{
+				p_ship_1++;
+			}
+		}
+		if (pc[i].on_watter)
+		{
+			if (pc[i].ship_size == 4)
+			{
+				pc_ship_4++;
+			}
+			else if (pc[i].ship_size == 3)
+			{
+				pc_ship_3++;
+			}
+			else if (pc[i].ship_size == 2)
+			{
+				pc_ship_2++;
+			}
+			else if (pc[i].ship_size == 1)
+			{
+				pc_ship_1++;
+			}
+		}
+	}
+	cout << "\n\tYour ships:\t\t\tEnemy`s ships\n\t";
+	cout << "\n\t" << ship << ship << ship << ship << " X " << p_ship_4 << "\t\t\t" << ship << ship << ship << ship << " X " << pc_ship_4;
+	cout << "\n\t" << ship << ship << ship << " X " << p_ship_3 << "\t\t\t\t" << ship << ship << ship << " X " << pc_ship_3;
+	cout << "\n\t" << ship << ship << " X " << p_ship_2 << "\t\t\t\t" << ship << ship << " X " << pc_ship_2;
+	cout << "\n\t" << ship << " X " << p_ship_1 << "\t\t\t\t" << ship << " X " << pc_ship_1;
+
+}
