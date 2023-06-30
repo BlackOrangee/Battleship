@@ -30,6 +30,8 @@ int difficulty = 60;
 
 int main()
 {
+restart:
+
 	srand(time(NULL));
 	Logo();
 
@@ -56,7 +58,18 @@ start:
 	Statistic(Players_Ships, PC_Ships, ship_count);
 	if (end_game)
 	{
-		Win_Logo();
+		int menu = Win_Logo();
+		if (menu == 1)
+		{
+			player_score = 0;
+			pc_score = 0;
+			end_game = false;
+			goto restart;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 
 	int input_size = 2;
@@ -85,8 +98,9 @@ start:
 	Statistic(Players_Ships, PC_Ships, ship_count);
 
 	bool hit = false;
-
+	Sleep(500);
 startpc:
+	
 
 	int pc_input_size = 2;
 	int* pc_input = new int[input_size];
@@ -103,7 +117,7 @@ startpc:
 
 	if (fire != 2)
 	{
-		Sleep(1000);
+		Sleep(500);
 		Field_Print(field_1_Player, field_2_Enemy, size);
 		Statistic(Players_Ships, PC_Ships, ship_count);
 	}
@@ -112,7 +126,9 @@ startpc:
 		pc_score++;
 		Check_Ship(field_1_Player, size, Players_Ships, ship_count);
 		Pointer(field_Enemy_Memory, field_1_Player, size, Players_Ships, ship_count);
-
+		Sleep(500);
+		Field_Print(field_1_Player, field_2_Enemy, size);
+		Statistic(Players_Ships, PC_Ships, ship_count);
 		if (Score_check(pc_score))
 		{
 			hit = true;

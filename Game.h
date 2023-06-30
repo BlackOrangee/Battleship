@@ -43,7 +43,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 					ran = rand() % 100;
 					if (ran >= 50)
 					{
-						if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+						if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 						{
 							arr[0] = ships[k].number + i + 1;
 							arr[1] = ships[k].letter;
@@ -66,7 +66,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							arr[0] = ships[k].number + i - 1;
 							arr[1] = ships[k].letter;
 						}
-						else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+						else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 						{
 							arr[0] = ships[k].number + i + 1;
 							arr[1] = ships[k].letter;
@@ -86,7 +86,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						ran = rand() % 100;
 						if (ran >= 50)
 						{
-							if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 							{
 								arr[0] = ships[k].number + i + 1;
 								arr[1] = ships[k].letter;
@@ -96,7 +96,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number + i - 1;
 								arr[1] = ships[k].letter;
 							}
-							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 11)
 							{
 								arr[0] = ships[k].number + i;
 								arr[1] = ships[k].letter + 1;
@@ -119,12 +119,12 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number + i - 1;
 								arr[1] = ships[k].letter;
 							}
-							else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 							{
 								arr[0] = ships[k].number + i + 1;
 								arr[1] = ships[k].letter;
 							}
-							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 11)
 							{
 								arr[0] = ships[k].number + i;
 								arr[1] = ships[k].letter + 1;
@@ -146,7 +146,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						ran = rand() % 100;
 						if (ran >= 50)
 						{
-							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 11)
 							{
 								arr[0] = ships[k].number + i;
 								arr[1] = ships[k].letter + 1;
@@ -156,7 +156,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number + i;
 								arr[1] = ships[k].letter - 1;
 							}
-							else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 							{
 								arr[0] = ships[k].number + i + 1;
 								arr[1] = ships[k].letter;
@@ -179,12 +179,12 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number + i;
 								arr[1] = ships[k].letter - 1;
 							 }
-							else if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 12)
+							else if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 11)
 							 {
 								arr[0] = ships[k].number + i;
 								arr[1] = ships[k].letter + 1;
 							 }
-							 else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 12)
+							 else if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 							 {
 								arr[0] = ships[k].number + i + 1;
 								arr[1] = ships[k].letter;
@@ -212,7 +212,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 					ran = rand() % 100;
 					if (ran >= 50)
 					{
-						if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 12)
+						if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 						{
 							arr[0] = ships[k].number;
 							arr[1] = ships[k].letter + i + 1;
@@ -235,7 +235,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							arr[0] = ships[k].number;
 							arr[1] = ships[k].letter + i - 1;
 						}
-						else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 12)
+						else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 						{
 							 arr[0] = ships[k].number;
 							 arr[1] = ships[k].letter + i + 1;
@@ -260,12 +260,12 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i - 1;
 							}
-							else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 12)
+							else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 							{
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i + 1;
 							}
-							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 11)
 							{
 								arr[0] = ships[k].number + 1;
 								arr[1] = ships[k].letter + i;
@@ -283,7 +283,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						}
 						else
 						{
-							if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 12)
+							if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 							{
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i + 1;
@@ -293,7 +293,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i - 1;
 							}
-							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 11)
 							{
 								arr[0] = ships[k].number + 1;
 								arr[1] = ships[k].letter + i;
@@ -320,7 +320,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number - 1;
 								arr[1] = ships[k].letter + i;
 							}
-							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 11)
 							{
 								arr[0] = ships[k].number + 1;
 								arr[1] = ships[k].letter + i;
@@ -330,7 +330,7 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i - 1;
 							}
-							else if(field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 12)
+							else if(field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 							{
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i + 1;
@@ -348,12 +348,12 @@ int* PC_II_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 								arr[0] = ships[k].number - 1;
 								arr[1] = ships[k].letter + i;
 							}
-							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 12)
+							else if (field_visible[ships[k].number + 1][ships[k].letter + i] == space && ships[k].number + 1 != 11)
 							{
 								arr[0] = ships[k].number + 1;
 								arr[1] = ships[k].letter + i;
 							}
-							else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 12)
+							else if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 							{
 								arr[0] = ships[k].number;
 								arr[1] = ships[k].letter + i + 1;
