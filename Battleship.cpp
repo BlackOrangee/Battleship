@@ -42,7 +42,8 @@ int main()
 	int ship_count = 10;
 
 	Ship* PC_Ships = Random_Ship_Placer(field_Enemy, size, ship_count);//pc ships
-	int menu = Start_Menu();
+	
+	Start_Menu();
 
 	Ship* Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);;
 	//Ship* Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count);

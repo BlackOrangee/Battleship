@@ -349,7 +349,7 @@ void Style_Menu()
 	}
 }
 
-int Start_Menu()
+void Start_Menu()
 {
 start_menu:
 
@@ -359,20 +359,26 @@ start_menu:
 	switch (menu)
 	{
 	case 1:
-		return 0;
-		/*cout << "\n\n\t1 -- Auto place ships\n\t2 -- Manual place ships\n\t";	cin >> menu;
+		cout << "\n\n\tDifficulty";
+		cout << "\n\n\t1 -- Ease\n\t2 -- Normal\n\t3 -- Harder\n\t4 -- Hard\n\t";	cin >> menu;
 
 		switch (menu)
 		{
 		case 1:
-			return 1;
+			difficulty = 40;
 			break;
 		case 2:
-			return 2;
+			difficulty = 50;
+			break;
+		case 3:
+			difficulty = 70;
+			break;
+		case 4:
+			difficulty = 100;
 			break;
 		default:
 			break;
-		}*/
+		}
 		break;
 	case 2:
 		Style_Menu();
