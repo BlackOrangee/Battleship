@@ -105,7 +105,7 @@ int Place_check(int ship_size, int orient, char** field, int& size, int* input, 
 	return 0;
 }
 
-Ship* Ship_Placer(char** field_1_Player, char** field_2_Enemy, int& size, int& ship_count)
+Ship* Ship_Placer(char** field_1_Player, char** field_2_Enemy, int& size, int ship_count)
 {
 	Ship* Players_Ships = new Ship[ship_count];
 
@@ -207,7 +207,7 @@ enter_coordinates:
 	return Players_Ships;
 }
 
-Ship* Random_Ship_Placer(char** field, int& size, int& ship_count)
+Ship* Random_Ship_Placer(char** field, int& size, int ship_count)
 {
 	Ship* Ships_arr = new Ship[ship_count];
 	
@@ -349,48 +349,77 @@ void Style_Menu()
 	}
 }
 
-void Start_Menu()
+void feld_menu()
 {
-start_menu:
-
 	int menu = 0;
-	cout << "\n\n\t1 -- Play\n\t2 -- Change style\n\t";	cin >> menu;
+	cout << "\n\n\tFilling\n\t1 -- Random\n\t2 -- Manual\n\t";	cin >> menu;
 
 	switch (menu)
 	{
 	case 1:
-		cout << "\n\n\tDifficulty";
-		cout << "\n\n\t1 -- Ease\n\t2 -- Normal\n\t3 -- Harder\n\t4 -- Hard\n\t";	cin >> menu;
-
-		switch (menu)
-		{
-		case 1:
-			difficulty = 40;
-			break;
-		case 2:
-			difficulty = 50;
-			break;
-		case 3:
-			difficulty = 70;
-			break;
-		case 4:
-			difficulty = 100;
-			break;
-		default:
-			break;
-		}
+		filing = 1;
 		break;
 	case 2:
-		Style_Menu();
-		goto start_menu;
+		filing = 2;
 		break;
 	default:
 		break;
 	}
 }
 
-void Statistic(Ship* player, Ship* pc, int& ship_count)
+void diff_menu()
 {
+	int menu = 0;
+
+	cout << "\n\n\tDifficulty";
+	cout << "\n\n\t1 -- Ease\n\t2 -- Normal\n\t3 -- Harder\n\t4 -- Hard\n\t";	cin >> menu;
+
+	switch (menu)
+	{
+	case 1:
+		difficulty = 40;
+		break;
+	case 2:
+		difficulty = 50;
+		break;
+	case 3:
+		difficulty = 70;
+		break;
+	case 4:
+		difficulty = 100;
+		break;
+	default:
+		break;
+	}
+}
+
+void Start_Menu()
+{
+start_menu:
+
+	int menu = 0;
+	cout << "\n\n\t1 -- Play\n\t3 -- Change Difficulty\n\t3 -- Change style\n\t";	cin >> menu;
+
+	switch (menu)
+	{
+	case 1:
+		feld_menu();
+		break;
+	case 2:
+		diff_menu();
+		goto start_menu;
+		break;
+	case 3:
+		Style_Menu();
+		goto start_menu;
+	default:
+		break;
+	}
+}
+
+void Statistic(Ship* player, Ship* pc, int ship_count)
+{
+	ship_count = 10;
 	int p_ship_4 = 0;
 	int p_ship_3 = 0;
 	int p_ship_2 = 0;

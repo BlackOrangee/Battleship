@@ -20,6 +20,7 @@ bool end_game = false;
 
 int difficulty = 60;
 
+int filing = 0;
 
 #include "windows.h"
 #include "Field.h"
@@ -46,10 +47,17 @@ restart:
 	Ship* PC_Ships = Random_Ship_Placer(field_Enemy, size, ship_count);//pc ships
 	
 	Start_Menu();
+	Ship* Players_Ships = NULL;
 
-	Ship* Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);;
-	//Ship* Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count);
-
+	if (filing == 1)
+	{
+		Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);
+	}
+	else if (filing == 2)
+	{
+		
+		Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count);
+	}
 
 start:
 
