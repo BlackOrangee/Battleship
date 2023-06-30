@@ -517,3 +517,79 @@ int Score_check(int& score)
 		return 0;
 	}
 }
+
+void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy_Memory, int& size, Ship* Players_Ships, Ship* PC_Ships, int& ship_count)
+{
+	
+	Field_Print(field_1_Player, field_2_Enemy, size);
+	Statistic(Players_Ships, PC_Ships, ship_count);
+
+startpc:
+	int pc_input_size = 2;
+	int* pc_input = new int[pc_input_size];
+	pc_input = PC_II_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count);
+
+	if (pc_input[0] == 0 && pc_input[1] == 0)
+	{
+		int ran = rand() % 10 + 1;
+		pc_input[0] = ran;
+		ran = rand() % 10 + 1;
+		pc_input[1] = ran;
+	}
+	int fire = PC_Fire(field_1_Player, field_Enemy_Memory, size, pc_input, pc_input_size);
+
+	if (fire != 2)
+	{
+		Sleep(500);
+		Field_Print(field_1_Player, field_2_Enemy, size);
+		Statistic(Players_Ships, PC_Ships, ship_count);
+	}
+	if (fire == 1)
+	{
+		pc_score++;
+		Check_Ship(field_1_Player, size, Players_Ships, ship_count);
+		Pointer(field_Enemy_Memory, field_1_Player, size, Players_Ships, ship_count);
+		Sleep(500);
+		Field_Print(field_1_Player, field_2_Enemy, size);
+		Statistic(Players_Ships, PC_Ships, ship_count);
+
+		if (Score_check(pc_score))
+		{
+			goto startpc;
+		}
+		else
+		{
+			end_game = true;
+		}
+	}
+	else if (fire == 2)
+	{
+		goto startpc;
+	}
+}
+
+void Player_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy, int& size, Ship* Players_Ships, Ship* PC_Ships, int& ship_count)
+{
+start:
+	Sleep(400);
+	Field_Print(field_1_Player, field_2_Enemy, size);
+	Statistic(Players_Ships, PC_Ships, ship_count);
+	int input_size = 2;
+	int* input = Input(input_size);
+
+	if (Player_Fire(input, input_size, field_2_Enemy, field_Enemy, size))
+	{
+		player_score++;
+		Check_Ship(field_Enemy, size, PC_Ships, ship_count);
+		Pointer(field_2_Enemy, field_Enemy, size, PC_Ships, ship_count);
+
+		if (Score_check(player_score))
+		{
+			goto start;
+		}
+		else
+		{
+			end_game = true;
+		}
+	}
+}
