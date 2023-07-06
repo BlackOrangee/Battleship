@@ -5,7 +5,15 @@ using namespace std;
 void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_count, int* arr, int& arr_size)
 {
 	
-	int ran;
+	int ranv1 = rand() % 100;
+	int ranv2 = rand() % 100;
+	int ranv3 = rand() % 100;
+	int ranv4 = rand() % 100;
+
+	int ranh1 = rand() % 100;
+	int ranh2 = rand() % 100;
+	int ranh3 = rand() % 100;
+	int ranh4 = rand() % 100;
 
 	for (int k = 0; k < ships_count; k++)
 	{
@@ -21,8 +29,7 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 					&& (field_visible[ships[k].number + i - 1][ships[k].letter] == cross
 						|| field_visible[ships[k].number + i + 1][ships[k].letter] == cross))
 				{
-					ran = rand() % 100;
-					if (ran >= 50)
+					if (ranv1 >= 50)
 					{
 						if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 						{
@@ -61,11 +68,9 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 				}
 				else if (field_visible[ships[k].number + i][ships[k].letter] == cross)
 				{
-					ran = rand() % 100;
-					if (ran <= difficulty)
+					if (ranv2 <= difficulty)
 					{
-						ran = rand() % 100;
-						if (ran >= 50)
+						if (ranv3 >= 50)
 						{
 							if (field_visible[ships[k].number + i + 1][ships[k].letter] == space && ships[k].number + i + 1 != 11)
 							{
@@ -124,8 +129,7 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 					}
 					else
 					{
-						ran = rand() % 100;
-						if (ran >= 50)
+						if (ranv4 >= 50)
 						{
 							if (field_visible[ships[k].number + i][ships[k].letter + 1] == space && ships[k].letter + 1 != 11)
 							{
@@ -193,8 +197,7 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 					&& (field_visible[ships[k].number][ships[k].letter + i - 1] == cross
 						|| field_visible[ships[k].number][ships[k].letter + i + 1] == cross))
 				{
-					ran = rand() % 100;
-					if (ran >= 50)
+					if (ranh1 >= 50)
 					{
 						if (field_visible[ships[k].number][ships[k].letter + i + 1] == space && ships[k].letter + i + 1 != 11)
 						{
@@ -233,11 +236,9 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 				}
 				else if (field_visible[ships[k].number][ships[k].letter + i] == cross)
 				{
-					ran = rand() % 100;
-					if (ran <= difficulty)
+					if (ranh2 <= difficulty)
 					{
-						ran = rand() % 100;
-						if (ran >= 50)
+						if (ranh3 >= 50)
 						{
 							if (field_visible[ships[k].number][ships[k].letter + i - 1] == space && ships[k].letter + i - 1 != 0)
 							{
@@ -296,8 +297,7 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 					}
 					else
 					{
-						ran = rand() % 100;
-						if (ran >= 50)
+						if (ranh4 >= 50)
 						{
 							if (field_visible[ships[k].number - 1][ships[k].letter + i] == space && ships[k].number - 1 != 0)
 							{
@@ -360,7 +360,7 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 	}
 }
 
-void PC_Start_Tactic_1(char** field_visible, int& size, int* arr, int& arr_size)
+void PC_Start_Tactic_2(char** field_visible, int& size, int* arr, int& arr_size)
 {
 	for (int i = 1; i < size - 1; i++)
 	{
@@ -373,15 +373,17 @@ void PC_Start_Tactic_1(char** field_visible, int& size, int* arr, int& arr_size)
 	}
 }
 
-void PC_Start_Tactic_2(char** field_visible, int& size, int* arr, int& arr_size)
+void PC_Start_Tactic_1(char** field_visible, int& size, int* arr, int& arr_size)
 {
-	for (int i = 1; i < size - 1; i++)
+	int j = 1;
+	for (int i = size - 2; i > 0; i--)
 	{
-		if (field_visible[i][i] == space)
+		if (field_visible[j][i] == space)
 		{
-			arr[0] = i;
+			arr[0] = j;
 			arr[1] = i;
 			return;
 		}
+		j++;
 	}
 }

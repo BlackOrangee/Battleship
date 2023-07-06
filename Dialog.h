@@ -388,4 +388,14 @@ void Statistic(Ship* player, Ship* pc, int ship_count)
 	Print_Game_Statistic(p_ship_1, p_ship_2, p_ship_3, p_ship_4, pc_ship_1, pc_ship_2, pc_ship_3, pc_ship_4);
 }
 
-
+void Tactic_Determinator()
+{
+	if ((rand() % 100) >= 50)
+	{
+		tactic_1 = true;
+	}
+	if ((rand() % 100) >= 50)
+	{
+		tactic_2 = true;
+	}
+}

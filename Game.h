@@ -2,14 +2,37 @@
 
 using namespace std;
 
+// This function removes the "bang" symbol from the game field and replaces it with the "point" symbol.
+void Bang_Remover(char** field, int& size)
+{
+	// Iterate over each cell in the field, excluding the outer boundary cells
+	for (int i = 1; i < size - 1; i++)
+	{
+		for (int j = 1; j < size - 1; j++)
+		{
+			// Check if the current cell contains the "bang" symbol
+			if (field[i][j] == bang)
+			{
+				// Replace the "bang" symbol with the "point" symbol
+				field[i][j] = point;
+			}
+		}
+	}
+}
+
+// This function handles the firing action on the game field.
+// It checks the specified coordinates on the unvisible field and updates the visible field accordingly.
+// It returns 0 for a miss, 1 for a hit, and 2 for an invalid move.
 int Fire(char** field_unvisible, char** field_visible, int& size, int* input, int input_size)
 {
+	Bang_Remover(field_unvisible, size);
+	Bang_Remover(field_visible, size);
 	// Check the value at the specified coordinate on the field_unvisible
 	if (field_unvisible[input[0]][input[1]] == space)
 	{
-		// If the coordinate is empty, mark it as a hit (point) on both the unvisible and visible fields
-		field_unvisible[input[0]][input[1]] = point;
-		field_visible[input[0]][input[1]] = point;
+		// If the coordinate is empty, mark it as a hit (bang) on both the unvisible and visible fields
+		field_unvisible[input[0]][input[1]] = bang;
+		field_visible[input[0]][input[1]] = bang;
 		return 0; // Return 0 to indicate a miss
 	}
 	else if (field_unvisible[input[0]][input[1]] == point || field_unvisible[input[0]][input[1]] == cross)
@@ -26,6 +49,7 @@ int Fire(char** field_unvisible, char** field_visible, int& size, int* input, in
 	}
 }
 
+// This function checks if a ship is vertically hit on the unvisible field.
 void Check_Ship_Vertical(char** field_2_unvisible, int& size, Ship* ships, int& ships_count, bool* on_watter, int& k)
 {
 	// Iterate over the ship's length
@@ -39,6 +63,7 @@ void Check_Ship_Vertical(char** field_2_unvisible, int& size, Ship* ships, int& 
 	}
 }
 
+// This function checks if a ship is horizontally hit on the unvisible field.
 void Check_Ship_Horizontal(char** field_2_unvisible, int& size, Ship* ships, int& ships_count, bool* on_watter, int& k)
 {
 	// Iterate over the ship's length
@@ -195,7 +220,23 @@ void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy_Mem
 		pc_input[0] = 0;
 		pc_input[1] = 0;
 
-		PC_Start_Tactic_1(field_Enemy_Memory, size, pc_input, pc_input_size);
+		if (tactic_1)
+		{
+			PC_Start_Tactic_1(field_Enemy_Memory, size, pc_input, pc_input_size);
+			if (pc_input[0] == 0 && pc_input[1] == 0)
+			{
+				tactic_1 = false;
+			}
+		}
+		else
+		{
+			PC_Start_Tactic_2(field_Enemy_Memory, size, pc_input, pc_input_size);
+			if (pc_input[0] == 0 && pc_input[1] == 0)
+			{
+				tactic_1 = true;
+			}
+		}
+
 		PC_AI_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
 
 		if (pc_input[0] == 0 && pc_input[1] == 0)
@@ -247,6 +288,23 @@ void PC_2_Turn(char** field_Enemy, char** field_Enemy_Memory, char** field_2_Ene
 	{
 		pc_input[0] = 0;
 		pc_input[1] = 0;
+
+		if (tactic_2)
+		{
+			PC_Start_Tactic_1(field_2_Enemy, size, pc_input, pc_input_size);
+			if (pc_input[0] == 0 && pc_input[1] == 0)
+			{
+				tactic_2 = false;
+			}
+		}
+		else
+		{
+			PC_Start_Tactic_2(field_2_Enemy, size, pc_input, pc_input_size);
+			if (pc_input[0] == 0 && pc_input[1] == 0)
+			{
+				tactic_2 = true;
+			}
+		}
 		PC_AI_Check_Ship(field_2_Enemy, size, PC_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
 
 		if (pc_input[0] == 0 && pc_input[1] == 0)
@@ -275,7 +333,7 @@ void PC_2_Turn(char** field_Enemy, char** field_Enemy_Memory, char** field_2_Ene
 			Field_Print(field_1_Player, field_2_Enemy, size); // Print the game field
 			Statistic(Players_Ships, PC_Ships, ship_count); // Print the game statistics
 
-			if (!Score_check(pc_score)) // Check if the PC's score reaches the winning condition
+			if (!Score_check(player_score)) // Check if the PC's score reaches the winning condition
 			{
 				end_game = true; // Set the end_game flag to true
 			}

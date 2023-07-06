@@ -160,6 +160,8 @@ void restart_Menu()
 		pc_score = 0; // Reset enemy's score
 		end_game = false; // Reset the end game flag
 		restart = true; // Set restart flag to true
+		tactic_1 = false;
+		tactic_2 = false;
 	}
 	else
 	{

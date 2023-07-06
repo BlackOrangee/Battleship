@@ -17,6 +17,8 @@ int main()
 
 	do
 	{
+		Tactic_Determinator();
+
 		int ship_count = 10; // Number of ships
 		int size = 12; // Size of the game field
 		char** field_1_Player = Create_Field(size); // Create the player's field
@@ -43,13 +45,14 @@ int main()
 		{
 			if (gamemode)
 			{
+				// If the game mode is player vs. computer
 				Player_Turn(field_1_Player, field_2_Enemy, field_Enemy, size, Players_Ships, PC_Ships, ship_count); // Player's turn
 			}
 			else
 			{
-				PC_2_Turn(field_Enemy, field_Enemy_Memory, field_2_Enemy, field_1_Player, size, PC_Ships, Players_Ships, ship_count);
+				// If the game mode is computer vs. computer
+				PC_2_Turn(field_Enemy, field_Enemy_Memory, field_2_Enemy, field_1_Player, size, PC_Ships, Players_Ships, ship_count); // Player's AI turn
 			}
-
 			if (end_game)
 			{
 				break;
