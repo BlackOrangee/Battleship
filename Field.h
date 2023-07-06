@@ -1,6 +1,7 @@
 #pragma once
 using namespace std;
 
+// Create Field
 char** Create_Field(int& size)
 {
 	char** field = new char* [size];
@@ -17,7 +18,7 @@ char** Create_Field(int& size)
 	return field;
 }
 
-
+// Print the game fields in the standard style
 void Standart_Field(char** field_1, char** field_2, int& size)
 {
 	Sleep(300);
@@ -42,6 +43,7 @@ void Standart_Field(char** field_1, char** field_2, int& size)
 	printf("\t  \\|===================|/       \\|===================|/\n");
 }
 
+// Print the game fields in alternative style 1
 void Alternative_1_Field_Print(char** field_1, char** field_2, int& size)
 {
 	cout << "\n\n\n";
@@ -65,6 +67,7 @@ void Alternative_1_Field_Print(char** field_1, char** field_2, int& size)
 
 }
 
+// Print the game fields in alternative style 2
 void Alternative_2_Field_Print(char** field_1, char** field_2, int& size)
 {
 	cout << "\n\n\n";
@@ -88,6 +91,7 @@ void Alternative_2_Field_Print(char** field_1, char** field_2, int& size)
 
 }
 
+// Print the game fields in alternative style 3
 void Alternative_3_Field_Print(char** field_1, char** field_2, int& size)
 {
 	cout << "\n\n\n";
@@ -110,25 +114,22 @@ void Alternative_3_Field_Print(char** field_1, char** field_2, int& size)
 	printf("\t  \\|===================|/       \\|===================|/\n");
 
 }
-
-
-
 void Field_Print(char** field_1, char** field_2, int& size)
 {
-		
+	// Switch statement based on the value of f_style
 	switch (f_style)
 	{
 	case 0:
-		Standart_Field(field_1, field_2, size);
+		Standart_Field(field_1, field_2, size); // Call the Standart_Field function to print the fields
 		break;
 	case 1:
-		Alternative_1_Field_Print(field_1, field_2, size);
+		Alternative_1_Field_Print(field_1, field_2, size); // Call the Alternative_1_Field_Print function to print the fields
 		break;
 	case 2:
-		Alternative_1_Field_Print(field_1, field_2, size);
+		Alternative_1_Field_Print(field_1, field_2, size); // Call the Alternative_1_Field_Print function to print the fields
 		break;
 	case 3:
-		Alternative_1_Field_Print(field_1, field_2, size);
+		Alternative_1_Field_Print(field_1, field_2, size); // Call the Alternative_1_Field_Print function to print the fields
 		break;
 	default:
 		break;

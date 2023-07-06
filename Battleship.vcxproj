@@ -146,6 +146,8 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Logo.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="PC_AI.h" />
     <ClInclude Include="Var.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

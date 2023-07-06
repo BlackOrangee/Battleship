@@ -1,7 +1,7 @@
 #pragma once
 using namespace std;
 
-
+// Print start menu logo
 void Logo()
 {
     system("cls");
@@ -41,6 +41,7 @@ void Logo()
  /////////////////////////////////////////////////////////////////////////////////////////////)";
 }
 
+// Print Win or Lose logo
 int Win_Logo()
 {
     system("cls");

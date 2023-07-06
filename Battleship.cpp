@@ -1,72 +1,67 @@
-﻿// Battleship.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
-
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 #include "Var.h"
 #include "windows.h"
 #include "Field.h"
 #include "Dialog.h"
-#include "Game.h"
 #include "Logo.h"
-
+#include "Menu.h"
+#include "PC_AI.h"
+#include "Game.h"
 
 int main()
 {
-restart:
-
+	// Seed the random number generator
 	srand(time(NULL));
-	Logo();
 
-	int size = 12;
-	char** field_1_Player = Create_Field(size);
-	char** field_2_Enemy = Create_Field(size);
-	char** field_Enemy = Create_Field(size);
-	char** field_Enemy_Memory = Create_Field(size);
-
-	int ship_count = 10;
-
-	Ship* PC_Ships = Random_Ship_Placer(field_Enemy, size, ship_count);//pc ships
-	
-	Start_Menu();
-	Ship* Players_Ships = NULL;
-
-	if (filing == 1)
+	do
 	{
-		Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count);
-	}
-	else if (filing == 2)
-	{
-		
-		Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count);
-	}
+		int ship_count = 10; // Number of ships
+		int size = 12; // Size of the game field
+		char** field_1_Player = Create_Field(size); // Create the player's field
+		char** field_2_Enemy = Create_Field(size); // Create the enemy's field
+		char** field_Enemy = Create_Field(size); // Create the combined enemy's field (for displaying)
+		char** field_Enemy_Memory = Create_Field(size); // Create the memory of the enemy's field
 
-	//Field_Print(field_Enemy, field_Enemy_Memory, size);
-start:
-	if (end_game)
-	{
-		int menu = Win_Logo();
-		if (menu == 1)
+		Ship* PC_Ships = Random_Ship_Placer(field_Enemy, size, ship_count); // Place random ships for the enemy
+
+		Logo(); // Display the game logo
+		Start_Menu(); // Display the start menu
+		Ship* Players_Ships = NULL;
+
+		if (filing == 1)
 		{
-			player_score = 0;
-			pc_score = 0;
-			end_game = false;
-			goto restart;
+			Players_Ships = Random_Ship_Placer(field_1_Player, size, ship_count); // Place random ships for the player
 		}
-		else
+		else if (filing == 2)
 		{
-			return 0;
+			Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count); // Allow the player to manually place ships
 		}
-	}
-	Player_Turn(field_1_Player, field_2_Enemy, field_Enemy, size, Players_Ships, PC_Ships, ship_count);
 
-	if (end_game)
-	{
-		goto start;
-	}
-	
-	PC_Turn(field_1_Player, field_2_Enemy, field_Enemy_Memory, size, Players_Ships, PC_Ships, ship_count);
-	
-	goto start;
+		do
+		{
+			if (gamemode)
+			{
+				Player_Turn(field_1_Player, field_2_Enemy, field_Enemy, size, Players_Ships, PC_Ships, ship_count); // Player's turn
+			}
+			else
+			{
+				PC_2_Turn(field_Enemy, field_Enemy_Memory, field_2_Enemy, field_1_Player, size, PC_Ships, Players_Ships, ship_count);
+			}
+
+			if (end_game)
+			{
+				break;
+			}
+
+			PC_Turn(field_1_Player, field_2_Enemy, field_Enemy_Memory, size, Players_Ships, PC_Ships, ship_count); // Enemy's turn
+
+		} while (!end_game);
+
+		if (end_game)
+		{
+			restart_Menu();
+		}
+	} while (restart);
 }
