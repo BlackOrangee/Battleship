@@ -2,12 +2,9 @@
 using namespace std;
 
 // This function represents the AI logic to check the ship's status and make the next move.
-int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_count)
+void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_count, int* arr, int& arr_size)
 {
-	// Create a dynamic array to store the AI's chosen coordinates
-	int* arr = new int[size];
-	arr[0] = 0;
-	arr[1] = 0;
+	
 	int ran;
 
 	for (int k = 0; k < ships_count; k++)
@@ -41,7 +38,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						{
 							continue;
 						}
-						return arr;
+						break;
 					}
 					else
 					{
@@ -59,7 +56,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						{
 							continue;
 						}
-						return arr;
+						break;
 					}
 				}
 				else if (field_visible[ships[k].number + i][ships[k].letter] == cross)
@@ -94,7 +91,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 						else
 						{
@@ -122,7 +119,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 					}
 					else
@@ -154,7 +151,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 						else
 						{
@@ -182,7 +179,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 					}
 				}
@@ -213,7 +210,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						{
 							continue;
 						}
-						return arr;
+						break;
 					}
 					else
 					{
@@ -231,7 +228,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 						{
 							continue;
 						}
-						return arr;
+						break;
 					}
 				}
 				else if (field_visible[ships[k].number][ships[k].letter + i] == cross)
@@ -266,7 +263,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 						else
 						{
@@ -294,7 +291,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 					}
 					else
@@ -326,7 +323,7 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 						else
 						{
@@ -354,25 +351,37 @@ int* PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 							{
 								continue;
 							}
-							return arr;
+							break;
 						}
 					}
 				}
 			}
 		}
 	}
-	return arr;
 }
-//
-//void PC_Start_Tactic(char** field_visible, int& size, int* arr, int& arr_size)
-//{
-//	for (int i = 1; i < size - 2; i++)
-//	{
-//		if (field_visible[i][i] == space)
-//		{
-//			arr[0] = i;
-//			arr[1] = i;
-//			return;
-//		}
-//	}
-//}
+
+void PC_Start_Tactic_1(char** field_visible, int& size, int* arr, int& arr_size)
+{
+	for (int i = 1; i < size - 1; i++)
+	{
+		if (field_visible[i][i] == space)
+		{
+			arr[0] = i;
+			arr[1] = i;
+			return;
+		}
+	}
+}
+
+void PC_Start_Tactic_2(char** field_visible, int& size, int* arr, int& arr_size)
+{
+	for (int i = 1; i < size - 1; i++)
+	{
+		if (field_visible[i][i] == space)
+		{
+			arr[0] = i;
+			arr[1] = i;
+			return;
+		}
+	}
+}
