@@ -210,8 +210,8 @@ void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy_Mem
 {
 	int pc_input_size = 2;
 	int* pc_input = new int[pc_input_size];
-	int fire = NULL;
-	int ran = NULL;
+	int fire = 0;
+	int ran = 0;
 
 	Field_Print(field_1_Player, field_2_Enemy, size); // Print the game field
 	Statistic(Players_Ships, PC_Ships, ship_count); // Print the game statistics
@@ -221,6 +221,7 @@ void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy_Mem
 		pc_input[1] = 0;
 
 		PC_AI_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
+		//PC_Supporter(field_1_Player, size, pc_input, pc_input_size, Players_Ships, ship_count);
 
 		if (tactic_1)
 		{

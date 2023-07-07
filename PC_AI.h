@@ -1,141 +1,136 @@
 #pragma once
 using namespace std;
 
-void PC_AI_Random(int& rndm, int& R_1, int R_2, int& R_3, int& R_4, int& R_5, int& R_6, int& R_7, int& R_8, int& V, int& H)
+void PC_AI_Random_Sup_1(int& random, int& Random_1, 
+	int& Random_2, int& Random_3, int& Random_4)
 {
-	R_1 = 0;
-	R_2 = 0;
-	R_3 = 0;
-	R_4 = 0;
-	R_5 = 0;
-	R_6 = 0;
-	rndm = rand() % 100;
-
-	if (rndm < 25)
+	if (random < 25)
 	{
-		R_1 = 1;
+		Random_1 = 1;
 	}
-	else if (rndm >= 25 && rndm < 50)
+	else if (random >= 25 && random < 50)
 	{
-		R_2 = 1;
+		Random_2 = 1;
 	}
-	else if (rndm >= 50 && rndm < 75)
+	else if (random >= 50 && random < 75)
 	{
-		R_3 = 1;
+		Random_3 = 1;
 	}
 	else
 	{
-		R_4 = 1;
-	}
-
-
-	if (rndm < 50)
-	{
-		R_5 = 1;
-		R_7 = 1;
-	}
-	else
-	{
-		R_6 = 1;
-		R_8 = 1;
+		Random_4 = 1;
 	}
 }
 
-void PC_AI_Orient(int& orient, int& V, int& H, int& R_5, int& R_6, int& R_7, int& R_8, int& i)
+void PC_AI_Random_Sup_2(int& random, int& Random_5, 
+	int& Random_6, int& Random_7, int& Random_8)
+{
+	if (random < 50)
+	{
+		Random_5 = 1;
+		Random_7 = 1;
+		return;
+	}
+	Random_6 = 1;
+	Random_8 = 1;
+}
+
+void Random_100(int& random)
+{
+	random = rand() % 100;
+}
+
+void PC_AI_Random(int& random, int& Random_1, int Random_2, 
+	int& Random_3, int& Random_4, int& Random_5, int& Random_6, 
+	int& Random_7, int& Random_8, int& Vertical, int& Horizontal)
+{
+	Random_1 = 0;
+	Random_2 = 0;
+	Random_3 = 0;
+	Random_4 = 0;
+	Random_5 = 0;
+	Random_6 = 0;
+	Random_100(random);
+
+	PC_AI_Random_Sup_1(random, Random_1, Random_2, Random_3, Random_4);
+	PC_AI_Random_Sup_2(random, Random_5, Random_6, Random_7, Random_8);
+}
+
+void Ship_Orient(int& orient, int& index, int& Vertical, int& Horizontal)
 {
 	if (orient == 1)
 	{
-		V = i;
-		H = 0;
-		R_7 = 0;
-		R_8 = 0;
-	}
-	else if (orient == 2)
-	{
-		V = 0;
-		H = i;
-		R_5 = 0;
-		R_6 = 0;
-	}
-}
-
-void PC_AI_Fixer(int& R_1, int& R_2, int& R_3, int& R_4)
-{
-	if (R_1 + R_2 + R_3 + R_4 == 1)
-	{
+		Horizontal = 0;
+		Vertical = index;
 		return;
 	}
-	else
-	{
-		if (R_1 == 1)
-		{
-			R_1 = 0;
-		}
-		else if (R_2 == 1)
-		{
-			R_2 = 0;
-		}
-		else if (R_3 == 1)
-		{
-			R_3 = 0;
-		}
-		else if (R_4 == 1)
-		{
-			R_4 = 0;
-		}
-	}
+	Vertical = 0;
+	Horizontal = index;
 }
+
+void PC_AI_Orient(int& orient, int& Random_5, int& Random_6, int& Random_7, int& Random_8)
+{
+	if (orient == 1)
+	{
+		Random_7 = 0;
+		Random_8 = 0;
+		return;
+	}
+	Random_5 = 0;
+	Random_6 = 0;
+}
+
 
 // This function represents the AI logic to check the ship's status and make the next move.
 void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_count, int* arr, int& arr_size)
 {
-	int rndm = 0;
-	int R_1 = 0;
-	int R_2 = 0;
-	int R_3 = 0;
-	int R_4 = 0;
-	int R_5 = 0;
-	int R_6 = 0;
-	int R_7 = 0;
-	int R_8 = 0;
-	int V = 0;
-	int H = 0;
+	int random = 0;
+	int Random_1 = 0;
+	int Random_2 = 0;
+	int Random_3 = 0;
+	int Random_4 = 0;
+	int Random_5 = 0;
+	int Random_6 = 0;
+	int Random_7 = 0;
+	int Random_8 = 0;
+	int Vertical = 0;
+	int Horizontal = 0;
 
 	for (int k = 0; k < ships_count; k++)
 	{
-		if (ships[k].on_watter == false)
+		if (!ships[k].on_watter)
 		{
 			continue;
 		}
 
-		PC_AI_Random(rndm, R_1, R_2, R_3, R_4, R_5, R_6, R_7, R_8, V, H);
+		PC_AI_Random(random, Random_1, Random_2, Random_3, Random_4, Random_5, Random_6, Random_7, Random_8, Vertical, Horizontal);
 
 		for (int i = 0; i < ships[k].ship_size; i++)
 		{
-			PC_AI_Orient(ships[k].orient, V, H, R_5, R_6, R_7, R_8, i);			
+			PC_AI_Orient(ships[k].orient, Random_5, Random_6, Random_7, Random_8);			
+			Ship_Orient(ships[k].orient, i, Vertical, Horizontal);
 
-			if (field_visible[ships[k].number + V][ships[k].letter + H] == cross
-				&& (field_visible[ships[k].number + V + R_5 - R_6][ships[k].letter + H + R_7 - R_8] == cross
-					|| field_visible[ships[k].number + V + R_6 - R_5][ships[k].letter + H + R_8 - R_7] == cross))
+			if (field_visible[ships[k].number + Vertical][ships[k].letter + Horizontal] == cross
+				&& (field_visible[ships[k].number + Vertical + Random_5 - Random_6][ships[k].letter + Horizontal + Random_7 - Random_8] == cross
+					|| field_visible[ships[k].number + Vertical + Random_6 - Random_5][ships[k].letter + Horizontal + Random_8 - Random_7] == cross))
 			{
-				PC_AI_Fixer(R_5, R_6, R_7, R_8);
-				if (field_visible[ships[k].number + V + R_5 - R_6][ships[k].letter + H + R_7 - R_8] == space
-					&& ships[k].number + V + R_5 - R_6 != 11
-					&& ships[k].number + V + R_5 - R_6 != 0
-					&& ships[k].letter + H + R_7 - R_8 != 11
-					&& ships[k].letter + H + R_7 - R_8 != 0)
+				if (field_visible[ships[k].number + Vertical + Random_5 - Random_6][ships[k].letter + Horizontal + Random_7 - Random_8] == space
+					&& ships[k].number + Vertical + Random_5 - Random_6 != 11
+					&& ships[k].number + Vertical + Random_5 - Random_6 != 0
+					&& ships[k].letter + Horizontal + Random_7 - Random_8 != 11
+					&& ships[k].letter + Horizontal + Random_7 - Random_8 != 0)
 				{
-					arr[0] = ships[k].number + V + R_5 - R_6;
-					arr[1] = ships[k].letter + H + R_7 - R_8;
+					arr[0] = ships[k].number + Vertical + Random_5 - Random_6;
+					arr[1] = ships[k].letter + Horizontal + Random_7 - Random_8;
 				}
-				else if (field_visible[ships[k].number + V + R_6 - R_5][ships[k].letter + H + R_8 - R_7] == space
-					&& ships[k].number + V + R_6 - R_5 != 11
-					&& ships[k].number + V + R_6 - R_5 != 0
-					&& ships[k].letter + H + R_8 - R_7 != 11
-					&& ships[k].letter + H + R_8 - R_7 != 0)
+				else if (field_visible[ships[k].number + Vertical + Random_6 - Random_5][ships[k].letter + Horizontal + Random_8 - Random_7] == space
+					&& ships[k].number + Vertical + Random_6 - Random_5 != 11
+					&& ships[k].number + Vertical + Random_6 - Random_5 != 0
+					&& ships[k].letter + Horizontal + Random_8 - Random_7 != 11
+					&& ships[k].letter + Horizontal + Random_8 - Random_7 != 0)
 				{
-					arr[0] = ships[k].number + V + R_6 - R_5;
-					arr[1] = ships[k].letter + H + R_8 - R_7;
+					arr[0] = ships[k].number + Vertical + Random_6 - Random_5;
+					arr[1] = ships[k].letter + Horizontal + Random_8 - Random_7;
 				}
 				else
 				{
@@ -143,44 +138,43 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 				}
 				break;
 			}
-			else if (field_visible[ships[k].number + V][ships[k].letter + H] == cross)
+			else if (field_visible[ships[k].number + Vertical][ships[k].letter + Horizontal] == cross)
 			{
-				PC_AI_Fixer(R_1, R_2, R_3, R_4);
-				if (field_visible[ships[k].number + V + R_1 - R_2][ships[k].letter + H + R_3 - R_4] == space
-					&& (ships[k].number + V + R_1 - R_2 != 11
-						&& ships[k].number + V + R_1 - R_2 != 0
-						&& ships[k].letter + H + R_3 - R_4 != 11
-						&& ships[k].letter + H + R_3 - R_4 != 0))
+				if (field_visible[ships[k].number + Vertical + Random_1 - Random_2][ships[k].letter + Horizontal + Random_3 - Random_4] == space
+					&& (ships[k].number + Vertical + Random_1 - Random_2 != 11
+						&& ships[k].number + Vertical + Random_1 - Random_2 != 0
+						&& ships[k].letter + Horizontal + Random_3 - Random_4 != 11
+						&& ships[k].letter + Horizontal + Random_3 - Random_4 != 0))
 				{
-					arr[0] = ships[k].number + V + R_1 - R_2;
-					arr[1] = ships[k].letter + H + R_3 - R_4;
+					arr[0] = ships[k].number + Vertical + Random_1 - Random_2;
+					arr[1] = ships[k].letter + Horizontal + Random_3 - Random_4;
 				}
-				else if (field_visible[ships[k].number + V + R_2 - R_1][ships[k].letter + H + R_4 - R_3] == space
-					&& (ships[k].number + V + R_2 - R_1 != 11
-						&& ships[k].number + V + R_2 - R_1 != 0
-						&& ships[k].letter + H + R_4 - R_3 != 11
-						&& ships[k].letter + H + R_4 - R_3 != 0))
+				else if (field_visible[ships[k].number + Vertical + Random_2 - Random_1][ships[k].letter + Horizontal + Random_4 - Random_3] == space
+					&& (ships[k].number + Vertical + Random_2 - Random_1 != 11
+						&& ships[k].number + Vertical + Random_2 - Random_1 != 0
+						&& ships[k].letter + Horizontal + Random_4 - Random_3 != 11
+						&& ships[k].letter + Horizontal + Random_4 - Random_3 != 0))
 				{
-					arr[0] = ships[k].number + V + R_2 - R_1;
-					arr[1] = ships[k].letter + H + R_4 - R_3;
+					arr[0] = ships[k].number + Vertical + Random_2 - Random_1;
+					arr[1] = ships[k].letter + Horizontal + Random_4 - Random_3;
 				}
-				else if (field_visible[ships[k].number + V + R_3 - R_4][ships[k].letter + H + R_1 - R_2] == space
-					&& (ships[k].number + V + R_3 - R_4 != 11
-						&& ships[k].number + V + R_3 - R_4 != 0
-						&& ships[k].letter + H + R_1 - R_2 != 11
-						&& ships[k].letter + H + R_1 - R_2 != 0))
+				else if (field_visible[ships[k].number + Vertical + Random_3 - Random_4][ships[k].letter + Horizontal + Random_1 - Random_2] == space
+					&& (ships[k].number + Vertical + Random_3 - Random_4 != 11
+						&& ships[k].number + Vertical + Random_3 - Random_4 != 0
+						&& ships[k].letter + Horizontal + Random_1 - Random_2 != 11
+						&& ships[k].letter + Horizontal + Random_1 - Random_2 != 0))
 				{
-					arr[0] = ships[k].number + V + R_3 - R_4;
-					arr[1] = ships[k].letter + H + R_1 - R_2;
+					arr[0] = ships[k].number + Vertical + Random_3 - Random_4;
+					arr[1] = ships[k].letter + Horizontal + Random_1 - Random_2;
 				}
-				else if (field_visible[ships[k].number + V + R_4 - R_3][ships[k].letter + H + R_2 - R_1] == space
-					&& (ships[k].number + V + R_4 - R_3 != 11
-						&& ships[k].number + V + R_4 - R_3 != 0
-						&& ships[k].letter + H + R_2 - R_1 != 11
-						&& ships[k].letter + H + R_2 - R_1 != 0))
+				else if (field_visible[ships[k].number + Vertical + Random_4 - Random_3][ships[k].letter + Horizontal + Random_2 - Random_1] == space
+					&& (ships[k].number + Vertical + Random_4 - Random_3 != 11
+						&& ships[k].number + Vertical + Random_4 - Random_3 != 0
+						&& ships[k].letter + Horizontal + Random_2 - Random_1 != 11
+						&& ships[k].letter + Horizontal + Random_2 - Random_1 != 0))
 				{
-					arr[0] = ships[k].number + V + R_4 - R_3;
-					arr[1] = ships[k].letter + H + R_2 - R_1;
+					arr[0] = ships[k].number + Vertical + Random_4 - Random_3;
+					arr[1] = ships[k].letter + Horizontal + Random_2 - Random_1;
 				}
 				else
 				{
@@ -228,3 +222,45 @@ void PC_Start_Tactic_1(char** field_visible, int& size, int* arr, int& arr_size)
 		j++;
 	}
 }
+
+//void PC_Supporter(char** field_unvisible, int& size, int* arr, int& arr_size, Ship* ships, int& ships_count)
+//{
+//	if (arr[0] || arr[1])
+//	{
+//		return;
+//	}
+//	int Vertical = 0;
+//	int Horizontal = 0;
+//	int random = 0;
+//
+//	Random_100(random);
+//	if (difficulty > random)
+//	{
+//		for (int k = 0; k < ships_count; k++)
+//		{
+//			if (!ships[k].on_watter)
+//			{
+//				continue;
+//			}
+//			for (int i = 0; i < ships[k].ship_size; i++)
+//			{
+//				Random_100(random);
+//				if (random < 1)
+//				{
+//					Ship_Orient(ships[k].orient, i, Vertical, Horizontal);
+//					if (field_unvisible[ships[k].number + Vertical][ships[k].letter + Horizontal] == ship)
+//					{
+//						arr[0] = ships[k].number + Vertical;
+//						arr[1] = ships[k].letter + Horizontal;
+//						return;
+//					}
+//				}
+//			}
+//		}
+//	}
+//}
+//
+//void PC_Game_Tactic()
+//{
+//
+//}
