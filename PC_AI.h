@@ -195,6 +195,10 @@ void PC_AI_Check_Ship(char** field_visible, int& size, Ship* ships, int& ships_c
 
 void PC_Start_Tactic_2(char** field_visible, int& size, int* arr, int& arr_size)
 {
+	if (arr[0] || arr[1])
+	{
+		return;
+	}
 	for (int i = 1; i < size - 1; i++)
 	{
 		if (field_visible[i][i] == space)
@@ -208,6 +212,10 @@ void PC_Start_Tactic_2(char** field_visible, int& size, int* arr, int& arr_size)
 
 void PC_Start_Tactic_1(char** field_visible, int& size, int* arr, int& arr_size)
 {
+	if (arr[0] || arr[1])
+	{
+		return;
+	}
 	int j = 1;
 	for (int i = size - 2; i > 0; i--)
 	{

@@ -220,6 +220,8 @@ void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy_Mem
 		pc_input[0] = 0;
 		pc_input[1] = 0;
 
+		PC_AI_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
+
 		if (tactic_1)
 		{
 			PC_Start_Tactic_1(field_Enemy_Memory, size, pc_input, pc_input_size);
@@ -237,7 +239,6 @@ void PC_Turn(char** field_1_Player, char** field_2_Enemy, char** field_Enemy_Mem
 			}
 		}
 
-		PC_AI_Check_Ship(field_Enemy_Memory, size, Players_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
 
 		if (pc_input[0] == 0 && pc_input[1] == 0)
 		{
@@ -289,6 +290,7 @@ void PC_2_Turn(char** field_Enemy, char** field_Enemy_Memory, char** field_2_Ene
 		pc_input[0] = 0;
 		pc_input[1] = 0;
 
+		PC_AI_Check_Ship(field_2_Enemy, size, PC_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
 		if (tactic_2)
 		{
 			PC_Start_Tactic_1(field_2_Enemy, size, pc_input, pc_input_size);
@@ -305,7 +307,7 @@ void PC_2_Turn(char** field_Enemy, char** field_Enemy_Memory, char** field_2_Ene
 				tactic_2 = true;
 			}
 		}
-		PC_AI_Check_Ship(field_2_Enemy, size, PC_Ships, ship_count, pc_input, pc_input_size); // Generate the PC's input coordinates
+		
 
 		if (pc_input[0] == 0 && pc_input[1] == 0)
 		{
