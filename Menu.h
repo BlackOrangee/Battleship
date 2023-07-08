@@ -77,16 +77,16 @@ void diff_menu()
 	switch (menu)
 	{
 	case 1:
-		difficulty = 40; // Set the difficulty to easy (40% hit probability)
+		difficulty = 1;
 		break;
 	case 2:
-		difficulty = 50; // Set the difficulty to normal (50% hit probability)
+		difficulty = 2;
 		break;
 	case 3:
-		difficulty = 70; // Set the difficulty to harder (70% hit probability)
+		difficulty = 3;
 		break;
 	case 4:
-		difficulty = 100; // Set the difficulty to hard (100% hit probability)
+		difficulty = 4;
 		break;
 	default:
 		diff_menu(); // Display the difficulty menu again for invalid input

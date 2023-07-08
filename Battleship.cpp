@@ -38,7 +38,8 @@ int main()
 		}
 		else if (filing == 2)
 		{
-			Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count); // Allow the player to manually place ships
+			// Allow the player to manually place ships
+			Players_Ships = Ship_Placer(field_1_Player, field_2_Enemy, size, ship_count); 
 		}
 
 		do
@@ -46,19 +47,23 @@ int main()
 			if (gamemode)
 			{
 				// If the game mode is player vs. computer
-				Player_Turn(field_1_Player, field_2_Enemy, field_Enemy, size, Players_Ships, PC_Ships, ship_count); // Player's turn
+				Player_Turn(field_1_Player, field_2_Enemy, field_Enemy, size, 
+					Players_Ships, PC_Ships, ship_count); // Player's turn
 			}
 			else
 			{
 				// If the game mode is computer vs. computer
-				PC_2_Turn(field_Enemy, field_Enemy_Memory, field_2_Enemy, field_1_Player, size, PC_Ships, Players_Ships, ship_count); // Player's AI turn
+				PC_2_Turn(field_Enemy, field_Enemy_Memory, field_2_Enemy, 
+					field_1_Player, size, PC_Ships, Players_Ships, ship_count); // Player's AI turn
 			}
+
 			if (end_game)
 			{
 				break;
 			}
 
-			PC_Turn(field_1_Player, field_2_Enemy, field_Enemy_Memory, size, Players_Ships, PC_Ships, ship_count); // Enemy's turn
+			PC_Turn(field_1_Player, field_2_Enemy, field_Enemy_Memory, size, 
+				Players_Ships, PC_Ships, ship_count); // Enemy's turn
 
 		} while (!end_game);
 

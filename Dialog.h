@@ -82,7 +82,8 @@ int* Input(int& size)
 }
 
 // Check the area around the ship for vertical orientation
-int Place_check_vertical(int ship_size, char** field, int& size, int* input, int input_size)
+int Place_check_vertical(int ship_size, char** field, int& size, 
+	int* input, int input_size)
 {
 	for (int i = 0; i < ship_size + 2; i++)
 	{
@@ -98,7 +99,8 @@ int Place_check_vertical(int ship_size, char** field, int& size, int* input, int
 }
 
 // Check the area around the ship for horizontal orientation
-int Place_check_horizontal(int ship_size, char** field, int& size, int* input, int input_size)
+int Place_check_horizontal(int ship_size, char** field, int& size, 
+	int* input, int input_size)
 {
 	for (int i = 0; i < ship_size + 2; i++)
 	{
@@ -114,7 +116,8 @@ int Place_check_horizontal(int ship_size, char** field, int& size, int* input, i
 }
 
 // Check the validity of the ship placement
-int Place_check(int ship_size, int orient, char** field, int& size, int* input, int input_size)
+int Place_check(int ship_size, int orient, char** field, int& size, 
+	int* input, int input_size)
 {
 	if (orient == 1) // Vertical orientation
 	{
@@ -187,20 +190,23 @@ void ship_sizer(int& ship_1, int& ship_2, int& ship_3, int& ship_size)
 	}
 }
 
-void Place_Ship_to_the_field(int& orient, int& ship_size, char& ship_c, int* input, int& input_size, char** field, int& size)
+void Place_Ship_to_the_field(int& orient, int& ship_size, char& ship_c, 
+	int* input, int& input_size, char** field, int& size)
 {
 	if (orient == 1) // Vertical orientation
 	{
 		for (int i = 0; i < ship_size; i++)
 		{
-			field[input[0] + i][input[1]] = ship_c; // Place the ship symbol in the field_1_Player array for each position of the ship
+			// Place the ship symbol in the field_1_Player array for each position of the ship
+			field[input[0] + i][input[1]] = ship_c; 
 		}
 	}
 	else if (orient == 2) // Horizontal orientation
 	{
 		for (int i = 0; i < ship_size; i++)
 		{
-			field[input[0]][input[1] + i] = ship_c; // Place the ship symbol in the field_1_Player array for each position of the ship
+			// Place the ship symbol in the field_1_Player array for each position of the ship
+			field[input[0]][input[1] + i] = ship_c; 
 		}
 	}
 }
@@ -240,7 +246,8 @@ Ship* Ship_Placer(char** field_1_Player, char** field_2_Enemy, int& size, int sh
 			if (ship_size != 1)
 			{
 				orient = 0;
-				cout << "\n\tEnter orientation:\n\t1 -- Vertical\n\t2 -- Horizontal\n\t";	cin >> orient; // Get the ship orientation from the user
+				cout << "\n\tEnter orientation:\n\t1 -- Vertical\n\t2 -- Horizontal\n\t";
+				cin >> orient; // Get the ship orientation from the user
 			}
 			else
 			{
@@ -343,7 +350,8 @@ void Statistic_Counter(Ship* ships, int ship_count, int& i, int& ship_1, int& sh
 }
 
 // Print the game statistics
-void Print_Game_Statistic(int& p_ship_1, int& p_ship_2, int& p_ship_3, int& p_ship_4, int& pc_ship_1, int& pc_ship_2, int& pc_ship_3, int& pc_ship_4)
+void Print_Game_Statistic(int& p_ship_1, int& p_ship_2, int& p_ship_3, 
+	int& p_ship_4, int& pc_ship_1, int& pc_ship_2, int& pc_ship_3, int& pc_ship_4)
 {
 	cout << "\n\tYour ships:\t\t\tEnemy's ships\n\t";
 
@@ -388,14 +396,35 @@ void Statistic(Ship* player, Ship* pc, int ship_count)
 	Print_Game_Statistic(p_ship_1, p_ship_2, p_ship_3, p_ship_4, pc_ship_1, pc_ship_2, pc_ship_3, pc_ship_4);
 }
 
+// This function determines the tactics based on the game difficulty and random chance.
 void Tactic_Determinator()
 {
-	if ((rand() % 100) >= 50)
+	switch (difficulty)
 	{
-		tactic_1 = true;
+	case 1:
+		tactics = false; // No tactics for difficulty level 1
+		break;
+	case 2:
+		tactics = true; // Enable tactics for difficulty level 2
+		if ((rand() % 100) >= 50)
+		{
+			tactic_1 = true; // 50% chance of using tactic 1
+		}
+		break;
+	case 3:
+		tactics = true; // Enable tactics for difficulty level 3
+		tactic_2 = true; // Enable tactic 2
+		if ((rand() % 100) >= 50)
+		{
+			tactic_first = true; // 50% chance of using the first tactic
+		}
+	default:
+		break;
 	}
+
 	if ((rand() % 100) >= 50)
 	{
-		tactic_2 = true;
+		tactic_pc_2 = true; // 50% chance of using tactic pc 2
 	}
 }
+
